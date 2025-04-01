@@ -241,15 +241,161 @@
 
 // // use Callback
 
+// import { useReducer, useState, useMemo, useCallback } from "react";
+// import TaskForm from "./components/TaskForm";
+// import { taskReducer } from "./reducer";
+// import './styles.css';
+
+
+// const App = () => {
+//   const [tasks, dispatch] = useReducer(taskReducer, []);
+//   const [filter, setFilter] = useState("all");
+
+//   const addTask = (title, description) => {
+//     dispatch({ type: "ADD_TASK", payload: { title, description } });
+//   };
+
+//   // 🟢 useCallback: Optimize Delete Task Function
+//   const deleteTask = useCallback((id) => {
+//     dispatch({ type: "DELETE_TASK", payload: { id } });
+//   }, []);
+
+//   // 🟢 useCallback: Optimize Toggle Task Completion Function
+//   const toggleComplete = useCallback((id) => {
+//     dispatch({ type: "TOGGLE_COMPLETE", payload: { id } });
+//   }, []);
+
+//   // 🟢 useMemo: Optimize Task Filtering
+//   const filteredTasks = useMemo(() => {
+//     console.log("Filtering tasks...");
+//     return tasks.filter((task) => {
+//       if (filter === "completed") return task.completed;
+//       if (filter === "pending") return !task.completed;
+//       return true;
+//     });
+//   }, [tasks, filter]);
+
+//   return (
+//     <div>
+//       <h1>Task Manager</h1>
+//       <TaskForm addTask={addTask} />
+
+//       {/* Task Filter Dropdown */}
+//       <label>Filter Tasks: </label>
+//       <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+//         <option value="all">All</option>
+//         <option value="completed">Completed</option>
+//         <option value="pending">Pending</option>
+//       </select>
+
+//       <ul>
+//         {filteredTasks.map((task) => (
+//           <li key={task.id}>
+//             <h3>{task.title}</h3>
+//             <p>{task.description}</p>
+//             <button onClick={() => deleteTask(task.id)}>Delete</button>
+//             <input
+//               type="checkbox"
+//               checked={task.completed}
+//               onChange={() => toggleComplete(task.id)}
+//             />
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+// import { useReducer, useState, useMemo, useCallback } from "react";
+// import TaskForm from "./components/TaskForm";
+// import { taskReducer } from "./reducer";
+// import './styles.css';
+
+// const App = () => {
+//   const [tasks, dispatch] = useReducer(taskReducer, []);
+//   const [filter, setFilter] = useState("all");
+//   const [isDarkMode, setIsDarkMode] = useState(false);
+
+//   const addTask = (title, description) => {
+//     dispatch({ type: "ADD_TASK", payload: { title, description } });
+//   };
+
+//   // 🟢 useCallback: Optimize Delete Task Function
+//   const deleteTask = useCallback((id) => {
+//     dispatch({ type: "DELETE_TASK", payload: { id } });
+//   }, []);
+
+//   // 🟢 useCallback: Optimize Toggle Task Completion Function
+//   const toggleComplete = useCallback((id) => {
+//     dispatch({ type: "TOGGLE_COMPLETE", payload: { id } });
+//   }, []);
+
+//   // 🟢 useMemo: Optimize Task Filtering
+//   const filteredTasks = useMemo(() => {
+//     console.log("Filtering tasks...");
+//     return tasks.filter((task) => {
+//       if (filter === "completed") return task.completed;
+//       if (filter === "pending") return !task.completed;
+//       return true;
+//     });
+//   }, [tasks, filter]);
+
+//   // Toggle Dark Mode
+//   const toggleDarkMode = () => {
+//     setIsDarkMode((prevMode) => !prevMode);
+//     document.body.classList.toggle("dark-mode", !isDarkMode); // Toggle dark mode class on body
+//   };
+
+//   return (
+//     <div>
+//       <h1>Task Manager</h1>
+//       <TaskForm addTask={addTask} />
+
+//       {/* Dark Mode Toggle Button */}
+//       <button onClick={toggleDarkMode}>
+//         {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+//       </button>
+
+//       {/* Task Filter Dropdown */}
+//       <label>Filter Tasks: </label>
+//       <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+//         <option value="all">All</option>
+//         <option value="completed">Completed</option>
+//         <option value="pending">Pending</option>
+//       </select>
+
+//       <ul>
+//         {filteredTasks.map((task) => (
+//           <li key={task.id}>
+//             <h3>{task.title}</h3>
+//             <p>{task.description}</p>
+//             <button onClick={() => deleteTask(task.id)}>Delete</button>
+//             <input
+//               type="checkbox"
+//               checked={task.completed}
+//               onChange={() => toggleComplete(task.id)}
+//             />
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+
 import { useReducer, useState, useMemo, useCallback } from "react";
 import TaskForm from "./components/TaskForm";
 import { taskReducer } from "./reducer";
 import './styles.css';
 
-
 const App = () => {
   const [tasks, dispatch] = useReducer(taskReducer, []);
   const [filter, setFilter] = useState("all");
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const addTask = (title, description) => {
     dispatch({ type: "ADD_TASK", payload: { title, description } });
@@ -275,9 +421,21 @@ const App = () => {
     });
   }, [tasks, filter]);
 
+  // Toggle Dark Mode
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+    document.body.classList.toggle("dark-mode", !isDarkMode); // Toggle dark mode class on body
+  };
+
   return (
     <div>
       <h1>Task Manager</h1>
+
+      {/* Dark Mode Toggle Button Below Task Manager Text */}
+      <button onClick={toggleDarkMode}>
+        {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      </button>
+
       <TaskForm addTask={addTask} />
 
       {/* Task Filter Dropdown */}
@@ -307,5 +465,3 @@ const App = () => {
 };
 
 export default App;
-
-
