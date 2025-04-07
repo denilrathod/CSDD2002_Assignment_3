@@ -1,3 +1,39 @@
+# 📝 Task Manager App with React Hooks
+
+This project is a **Task Manager App** built using React. It demonstrates the real-world usage of **React Hooks** such as `useState`, `useEffect`, `useContext`, `useReducer`, `useRef`, `useMemo`, and `useCallback`.
+
+---
+
+## 🚀 Features
+
+- ✅ Add, update, and delete tasks
+- ✅ Mark tasks as completed or pending
+- ✅ Filter tasks by status (All / Completed / Pending)
+- 🌙 Toggle between Light and Dark Mode (persists on reload)
+- 💾 Autosave tasks to `localStorage`
+- ⚡ Optimized performance using `useMemo` and `useCallback`
+
+---
+
+## 🧠 React Hooks Used
+
+| Hook         | Usage                                                                 |
+|--------------|-----------------------------------------------------------------------|
+| `useState`   | Manage form inputs, filter dropdown, and theme state                 |
+| `useEffect`  | Sync task list and theme with `localStorage`, and handle side effects|
+| `useContext` | Share and toggle theme globally                                       |
+| `useReducer` | Handle complex task logic: Add, Delete, Toggle Complete              |
+| `useRef`     | Autofocus on task input field on component mount                     |
+| `useMemo`    | Optimize task filtering logic                                         |
+| `useCallback`| Prevent unnecessary re-renders for event handlers                    |
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
